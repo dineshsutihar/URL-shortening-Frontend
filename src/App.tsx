@@ -1,6 +1,7 @@
 import Home from "./components/Home"
 import Nav from "./components/Nav"
 import ShortenLink from "./components/ShortenLink"
+import Statistics from "./components/Statistics"
 
 function App() {
 
@@ -10,8 +11,8 @@ function App() {
         <Nav />
         <Home />
       </div>
-
       <ShortenLink />
+      <Statistics />
     </main>
   )
 }
