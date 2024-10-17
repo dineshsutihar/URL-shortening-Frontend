@@ -7,7 +7,7 @@ export default function Home() {
                 <p className="mt-5 text-xl md:text-2xl md:w-4/6">Build your brand's recognition and get detailed insights on how your links are performing.</p>
                 <button className="rounded-3xl w-1/2 px-5 md:w-1/3 py-3 mt-10 text-xl font-semibold text-white bg-[hsl(180,66%,49%)] md:mt-10 md:px-10">Get Started</button>
             </div>
-            <div id="right-landing" className="mt-14 object-cover w-svw overflow-x-hidden md:w-4/5">
+            <div id="right-landing" className="mt-14 object-cover  md:w-4/5">
                 <img src="./public/images/illustration-working.svg" alt="Working Illustration" />
             </div>
         </div>
