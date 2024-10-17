@@ -7,7 +7,7 @@ function App() {
 
   return (
     <main className="p-5 md:mx-14">
-      <div className="h-screen">
+      <div className="h-[90vh]">
         <Nav />
         <Home />
       </div>
