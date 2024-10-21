@@ -16,7 +16,7 @@ export default function Nav() {
                     <button id="signup" className="rounded-3xl px-5 py-2 text-white bg-[hsl(180,66%,49%)]">Sign up</button>
                 </div>
             </nav>
-            <nav className="sm:hidden flex justify-between ">
+            <nav className="md:hidden flex justify-between ">
                 <img src="./public/images/logo.svg " alt="Shortly" className="w-2/6" />
                 <button id="menu" className="text-3xl" >
                     <LuMenu />
