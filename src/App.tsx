@@ -8,12 +8,10 @@ import Statistics from "./components/Statistics"
 function App() {
 
   return (
-    <div>
-      <main className="p-5 md:mx-14">
-        <div className="h-[95vh]">
-          <Nav />
-          <Home />
-        </div>
+    <div className="max-w-screen-2xl mx-auto">
+      <main className="p-5 md:mx-14 font-">
+        <Nav />
+        <Home />
         <ShortenLink />
         <Statistics />
       </main>
