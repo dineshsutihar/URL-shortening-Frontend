@@ -1,6 +1,6 @@
 export default function Statistics() {
     return (
-        <section className="h-[70vh] border">
+        <section className="md:h-[70vh] border">
             <div className=" py-10 px-5">
                 <h2 className="text-3xl text-center font-extrabold">Advanced Statistics</h2>
                 <p className="text-center mt-5 w-4/6 mx-auto">Track how your links are performing across the web with our advanced statistics dashboard.</p>
