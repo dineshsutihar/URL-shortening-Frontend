@@ -29,18 +29,20 @@ export default function Nav() {
                 <button id="menu" className="text-3xl" >
                     <LuMenu onClick={handleMenu} />
                 </button>
-                <div className="absolute bg-dvioletPrimary top-16 border w-full text-center p-10 text-2xl text-white rounded-xl font-extrabold leading-loose">
-                    <ul className="font-semibold">
-                        <li>Features</li>
-                        <li>Pricing</li>
-                        <li>Resources</li>
-                    </ul>
-                    <hr />
-                    <div className="flex flex-col font-semibold items-center gap-5">
-                        <button id="login">Log in</button>
-                        <button id="signup" className="rounded-3xl w-full px-5 text-white bg-[hsl(180,66%,49%)]">Sign up</button>
+                {menu &&
+                    <div className="absolute bg-dvioletPrimary top-16 border w-full text-center p-10 text-2xl text-white rounded-xl font-extrabold leading-normal">
+                        <ul className="font-semibold">
+                            <li className="hover:bg-dgrayNeutral p-2 my-1 rounded-xl">Features</li>
+                            <li className="hover:bg-dgrayNeutral p-2 my-1 rounded-xl">Pricing</li>
+                            <li className="hover:bg-dgrayNeutral p-2 my-1 mb-5 rounded-xl">Resources</li>
+                        </ul>
+                        <hr />
+                        <div className="flex flex-col font-semibold items-center gap-3 mt-4">
+                            <button id="login">Log in</button>
+                            <button id="signup" className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)]">Sign up</button>
+                        </div>
                     </div>
-                </div>
+                }
 
             </nav>
         </header>
