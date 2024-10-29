@@ -1,7 +1,7 @@
 export default function Home() {
 
     return (
-        <div id="landing" className="flex flex-nowrap flex-col-reverse justify-end mt-10 md:flex-row md:justify-between md:items-center md:mt-25 lg:h-[80vh]">
+        <div id="landing" className="flex flex-nowrap flex-col-reverse justify-end mt-10 md:flex-row md:justify-between md:items-center md:mt-25 lg:h-[80vh] font-poppins">
             <div id="left-landing" className="mt-14 text-center md:text-left">
                 <h1 className="text-5xl xl:text-8xl md:text-4xl font-bold ">More than just shorter links</h1>
                 <p className="mt-5 text-xl md:text-2xl md:w-4/6">Build your brand's recognition and get detailed insights on how your links are performing.</p>

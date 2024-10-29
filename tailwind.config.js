@@ -4,29 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        pCyan: "hsl(180, 66%, 49%)",
-        pDarkViolet: "hsl(257, 27%, 26%)",
-        sRed: "hsl(0, 87%, 67%)",
-        nGray: "hsl(0, 0%, 75%)",
-        nGrayishViolet: "hsl(257, 7%, 63%)",
-        nVeryDarkBlue: "hsl(260, 11%, 22%)",
-        nVeryDarkViolet: "hsl(260, 8%, 14%)",
+        cyanPrimary: "hsl(180, 66%, 49%)",
+        violetPrimary: "hsl(257, 27%, 26%)",
+        redAccent: "hsl(0, 87%, 67%)",
+        grayNeutral: "hsl(0, 0%, 75%)",
+        violetGrayNeutral: "hsl(257, 7%, 63%)",
+        darkBlueNeutral: "hsl(255, 11%, 22%)",
+        darkVioletNeutral: "hsl(260, 8%, 14%)",
+      },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },
   plugins: [],
 };
-
-/*
-## Colors
-### Primary
-- Cyan: hsl(180, 66%, 49%)
-- Dark Violet: hsl(257, 27%, 26%)
-### Secondary
-- Red: hsl(0, 87%, 67%)
-### Neutral
-- Gray: hsl(0, 0%, 75%)
-- Grayish Violet: hsl(257, 7%, 63%)
-- Very Dark Blue: hsl(255, 11%, 22%)
-- Very Dark Violet: hsl(260, 8%, 14%)
-*/
