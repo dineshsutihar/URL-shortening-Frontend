@@ -15,7 +15,7 @@ export default function ShortenLink() {
       return;
     }
     axios
-      .post("http://localhost:3031/shorten", {
+      .post(`${process.env.BACKEND_URL}/shorten`, {
         url: url,
       })
       .then((response) => {
