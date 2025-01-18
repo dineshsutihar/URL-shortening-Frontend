@@ -22,6 +22,5 @@ export default async function shortenLink(url: string): Promise<string | null> {
       console.error("Error while shortening the link:", error);
       return null;
     });
-    
   return result;
 }
