@@ -9,10 +9,12 @@ import Register from "./components/register.tsx";
 import TermsAndConditions from "./components/terms-and-conditions.tsx";
 import Error from "./components/404.tsx";
 import DashboardPage from "./components/Dashboard.tsx";
+import { Toaster } from "sonner";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Router>
+      <Toaster />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/dashboard" element={<DashboardPage />} />

@@ -1,12 +1,11 @@
 import { toast } from "sonner";
-import axios from "axios";
 import { useState } from "react";
-const apiUrl = import.meta.env.VITE_BACKEND_URL;
+import shortenLink from "@/lib/server-calls";
 
 export default function ShortenLink() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const shortenLink = async () => {
+  const shorten = async () => {
     setLoading(true);
     if (!url) {
       toast.error("Please enter a URL to shorten", {
@@ -22,24 +21,8 @@ export default function ShortenLink() {
       setLoading(false);
       return;
     }
-    axios
-      .post(`${apiUrl}/shorten`, {
-        url: url,
-      })
-      .then((response) => {
-        setLoading(false);
-        toast.success("Link shortened successfully", {
-          description: response.data,
-          position: "top-right",
-        });
-      })
-      .catch((error) => {
-        setLoading(false);
-        toast.error("Error while shortening the link", {
-          description: error.response?.data || "An error occurred",
-          position: "top-right",
-        });
-      });
+    shortenLink(url);
+    setLoading(false);
   };
 
   return (
@@ -71,7 +54,7 @@ export default function ShortenLink() {
           className="w-full md:w-40 px-5 py-3 text-xl font-semibold text-white 
                  bg-[hsl(180,66%,49%)] rounded whitespace-nowrap 
                  hover:bg-opacity-80 transition-colors duration-300"
-          onClick={() => shortenLink()}
+          onClick={() => shorten()}
           disabled={loading}
         >
           {loading ? (

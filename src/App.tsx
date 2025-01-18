@@ -1,4 +1,3 @@
-import { Toaster } from "sonner";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
@@ -16,7 +15,6 @@ function App() {
           <ShortenLink />
           <Statistics />
         </main>
-        <Toaster />
       </div>
       <PreFooter />
       <Footer />
