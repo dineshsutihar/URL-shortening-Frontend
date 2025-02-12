@@ -9,14 +9,14 @@ export default function ShortenLink() {
       const response = await axios.post("http://localhost:3031/shorten", {
         url: url,
       });
-      console.log(response.data);
       toast.success("Link shortened successfully", {
         description: response.data,
+        position: "top-right",
       });
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown | any) {
       toast.error("Error while shortening the link", {
-        description: "Please try again later",
+        description: error.response.data || "An error occurred",
+        position: "top-right",
       });
     }
   };
