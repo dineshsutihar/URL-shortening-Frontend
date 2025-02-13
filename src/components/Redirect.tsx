@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Ripple } from "./magicui/ripple";
 
 const RedirectHandler = () => {
   const { shortKey } = useParams(); // Get short key from URL
@@ -20,7 +21,14 @@ const RedirectHandler = () => {
     fetchOriginalUrl();
   }, [shortKey]);
 
-  return <h3>Redirecting...</h3>;
+  return (
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background">
+      <p className="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-white">
+        Redirecting...
+      </p>
+      <Ripple />
+    </div>
+  );
 };
 
 export default RedirectHandler;
