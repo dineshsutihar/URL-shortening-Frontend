@@ -4,25 +4,41 @@ import { useState } from "react";
 
 export default function ShortenLink() {
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
   const shortenLink = async () => {
-    try {
-      const response = await axios.post("http://localhost:3031/shorten", {
-        url: url,
-      });
-      toast.success("Link shortened successfully", {
-        description: response.data,
+    setLoading(true);
+    if (!url) {
+      toast.error("Please enter a URL to shorten", {
         position: "top-right",
       });
-    } catch (error: unknown | any) {
-      toast.error("Error while shortening the link", {
-        description: error.response.data || "An error occurred",
-        position: "top-right",
-      });
+      setLoading(false);
+      return;
     }
+    axios
+      .post("http://localhost:3031/shorten", {
+        url: url,
+      })
+      .then((response) => {
+        setLoading(false);
+        toast.success("Link shortened successfully", {
+          description: response.data,
+          position: "top-right",
+        });
+      })
+      .catch((error) => {
+        setLoading(false);
+        toast.error("Error while shortening the link", {
+          description: error.response?.data || "An error occurred",
+          position: "top-right",
+        });
+      });
   };
 
   return (
-    <div className="relative bg-gray-900 border border-amber-400 rounded-xl mt-32 mx-4 md:mx-0">
+    <div
+      id="shorten"
+      className="relative bg-gray-900 border border-amber-400 rounded-xl mt-32 mx-4 md:mx-0"
+    >
       <picture className="absolute inset-0 h-full rounded-xl">
         <source
           media="(min-width: 768px)"
@@ -45,11 +61,12 @@ export default function ShortenLink() {
         />
         <button
           className="w-full md:w-40 px-5 py-3 text-xl font-semibold text-white 
-                             bg-[hsl(180,66%,49%)] rounded whitespace-nowrap 
-                             hover:bg-opacity-80 transition-colors duration-300"
+                 bg-[hsl(180,66%,49%)] rounded whitespace-nowrap 
+                 hover:bg-opacity-80 transition-colors duration-300"
           onClick={() => shortenLink()}
+          disabled={loading}
         >
-          Shorten It!
+          {loading ? "Please wait..." : "Shorten It!"}
         </button>
       </div>
     </div>
