@@ -18,7 +18,7 @@ export default function PreFooter() {
             Boost your links today
           </h1>
           <a href="#shorten">
-            <button className="md:w-1/5 px-5 py-3 text-xl font-semibold text-white bg-[hsl(180,66%,49%)] rounded-3xl hover:bg-opacity-80 transition-colors">
+            <button className="rounded-full px-10 py-3 mt-8 mb-20 text-lg font-semibold text-white transition-colors duration-300 bg-[hsl(180,66%,49%)] hover:bg-[hsl(180,66%,60%)] md:mt-10">
               Get Started
             </button>
           </a>
