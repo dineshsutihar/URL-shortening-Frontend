@@ -6,6 +6,8 @@ import "./index.css";
 import RedirectHandler from "./components/Redirect.tsx";
 import LoginForm from "./components/login.tsx";
 import Register from "./components/register.tsx";
+import TermsAndConditions from "./components/terms-and-conditions.tsx";
+import Error from "./components/404.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,6 +17,8 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/:shortKey" element={<RedirectHandler />} />
         <Route path="/auth/login" element={<LoginForm />} />
         <Route path="/auth/register" element={<Register />} />
+        <Route path="*" element={<Error />} />
+        <Route path="/policy/terms" element={<TermsAndConditions />} />
       </Routes>
     </Router>
   </StrictMode>
