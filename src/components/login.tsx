@@ -78,21 +78,21 @@ export default function LoginForm() {
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
-            <Link
+            <a
               className="text-dcyanPrimary hover:underline"
               href="/auth/forgot-password"
             >
               Forgot your password?
-            </Link>
+            </a>
           </div>
           <div className="mt-4 text-center text-sm text-dvioletGrayNeutral">
             Don&apos;t have an account?{" "}
-            <Link
+            <a
               className="text-dcyanPrimary hover:underline"
               href="/auth/register"
             >
               Sign up
-            </Link>
+            </a>
           </div>
         </CardContent>
       </Card>

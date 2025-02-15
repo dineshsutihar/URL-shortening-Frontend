@@ -18,14 +18,15 @@ export default function Nav() {
             <li className="hover:text-green-500">Resources</li>
           </ul>
         </div>
-        <div className="flex font-semibold items-center  gap-5">
-          <button id="login">Log in</button>
-          <button
+        <div className="flex font-semibold items-center gap-5">
+          <a href="/auth/login" id="login">Log in</a>
+          <a
+            href="/auth/register"
             id="signup"
             className="rounded-3xl px-5 py-2 text-white bg-[hsl(180,66%,49%)]"
           >
             Sign up
-          </button>
+          </a>
         </div>
       </nav>
       {/* Mobile Devices */}
@@ -35,27 +36,26 @@ export default function Nav() {
           <LuMenu onClick={handleMenu} />
         </button>
         {menu && (
-          <div className="absolute bg-dvioletPrimary top-16 border w-full text-center p-10 text-2xl text-white rounded-xl font-extrabold leading-normal">
+          <div className="absolute bg-violetPrimary top-16 border w-full text-center p-10 text-2xl text-white rounded-xl font-extrabold leading-normal">
             <ul className="font-semibold">
-              <li className="hover:bg-dgrayNeutral p-2 my-1 rounded-xl">
+              <li className="hover:bg-grayNeutral p-2 my-1 rounded-xl">
                 Features
               </li>
-              <li className="hover:bg-dgrayNeutral p-2 my-1 rounded-xl">
+              <li className="hover:bg-grayNeutral p-2 my-1 rounded-xl">
                 Pricing
               </li>
-              <li className="hover:bg-dgrayNeutral p-2 my-1 mb-5 rounded-xl">
+              <li className="hover:bg-grayNeutral p-2 my-1 mb-5 rounded-xl">
                 Resources
               </li>
             </ul>
             <hr />
             <div className="flex flex-col font-semibold items-center gap-3 mt-4">
-              <button id="login">Log in</button>
-              <button
-                id="signup"
-                className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)]"
-              >
+              <a href="/auth/login" id="login" className="px-4 py-2">
+                Log in
+              </a>
+              <a href="/auth/register" id="signup" className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)] text-center">
                 Sign up
-              </button>
+              </a>
             </div>
           </div>
         )}

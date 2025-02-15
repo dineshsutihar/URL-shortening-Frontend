@@ -100,12 +100,9 @@ export default function RegisterForm() {
                 htmlFor="terms"
               >
                 I agree to the{" "}
-                <Link
-                  className="text-dcyanPrimary hover:underline"
-                  href="/terms"
-                >
+                <a className="text-dcyanPrimary hover:underline" href="/terms">
                   terms and conditions
-                </Link>
+                </a>
               </Label>
             </div>
             <Button
@@ -117,12 +114,9 @@ export default function RegisterForm() {
           </form>
           <div className="mt-4 text-center text-sm text-dvioletGrayNeutral">
             Already have an account?{" "}
-            <Link
-              className="text-dcyanPrimary hover:underline"
-              href="/auth/login"
-            >
+            <a className="text-dcyanPrimary hover:underline" href="/auth/login">
               Sign in
-            </Link>
+            </a>
           </div>
         </CardContent>
       </Card>
