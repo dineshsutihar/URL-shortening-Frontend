@@ -18,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/auth/login" element={<LoginForm />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="*" element={<Error />} />
+        <Route path="/404" element={<Error />} />
         <Route path="/policy/terms" element={<TermsAndConditions />} />
       </Routes>
     </Router>
