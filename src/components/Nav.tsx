@@ -13,13 +13,15 @@ export default function Nav() {
         <div className="flex gap-10 flex-nowrap items-center">
           <img src="./public/images/logo.svg " alt="Shortly" />
           <ul className="flex gap-5 font-semibold cursor-pointer ">
-            <li className="hover:text-green-500">Features</li>
-            <li className="hover:text-green-500">Pricing</li>
-            <li className="hover:text-green-500">Resources</li>
+            <li className="hover:text-dcyanPrimary">Features</li>
+            <li className="hover:text-dcyanPrimary">Pricing</li>
+            <li className="hover:text-dcyanPrimary">Resources</li>
           </ul>
         </div>
         <div className="flex font-semibold items-center gap-5">
-          <a href="/auth/login" id="login">Log in</a>
+          <a href="/auth/login" id="login">
+            Log in
+          </a>
           <a
             href="/auth/register"
             id="signup"
@@ -53,7 +55,11 @@ export default function Nav() {
               <a href="/auth/login" id="login" className="px-4 py-2">
                 Log in
               </a>
-              <a href="/auth/register" id="signup" className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)] text-center">
+              <a
+                href="/auth/register"
+                id="signup"
+                className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)] text-center"
+              >
                 Sign up
               </a>
             </div>

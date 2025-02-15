@@ -100,7 +100,10 @@ export default function RegisterForm() {
                 htmlFor="terms"
               >
                 I agree to the{" "}
-                <a className="text-dcyanPrimary hover:underline" href="/terms">
+                <a
+                  className="text-dcyanPrimary hover:underline"
+                  href="/policy/terms"
+                >
                   terms and conditions
                 </a>
               </Label>
