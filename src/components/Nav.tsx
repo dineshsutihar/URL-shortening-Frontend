@@ -38,15 +38,15 @@ export default function Nav() {
           <LuMenu onClick={handleMenu} />
         </button>
         {menu && (
-          <div className="absolute bg-violetPrimary top-16 border w-full text-center p-10 text-2xl text-white rounded-xl font-extrabold leading-normal">
+          <div className="absolute backdrop-blur-md top-16 border w-full text-center p-10 text-2xl text-black rounded-xl font-extrabold leading-normal">
             <ul className="font-semibold">
-              <li className="hover:bg-grayNeutral p-2 my-1 rounded-xl">
+              <li className="hover:bg-[hsl(180,66%,49%)] p-2 my-1 rounded-3xl">
                 Features
               </li>
-              <li className="hover:bg-grayNeutral p-2 my-1 rounded-xl">
+              <li className="hover:bg-[hsl(180,66%,49%)] p-2 my-1 rounded-3xl">
                 Pricing
               </li>
-              <li className="hover:bg-grayNeutral p-2 my-1 mb-5 rounded-xl">
+              <li className="hover:bg-[hsl(180,66%,49%)]  p-2 my-1 mb-5 rounded-3xl">
                 Resources
               </li>
             </ul>
