@@ -15,9 +15,11 @@ export default function Home() {
           Build your brand's recognition and get detailed insights on how your
           links are performing.
         </p>
-        <button className="rounded-full px-10 py-3 mt-8 mb-20 text-lg font-semibold text-white transition-colors duration-300 bg-[hsl(180,66%,49%)] hover:bg-[hsl(180,66%,60%)] md:mt-10">
-          Get Started
-        </button>
+        <a href="#shorten">
+          <button className="rounded-full px-10 py-3 mt-8 mb-20 text-lg font-semibold text-white transition-colors duration-300 bg-[hsl(180,66%,49%)] hover:bg-[hsl(180,66%,60%)] md:mt-10">
+            Get Started
+          </button>
+        </a>
       </div>
       <div id="right-landing" className="md:flex-1 lg:flex-none lg:w-1/2">
         <img
