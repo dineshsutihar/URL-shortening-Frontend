@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div
       id="landing"
-      className="flex flex-nowrap flex-col-reverse justify-end px-6 mt-10 md:flex-row md:justify-between md:items-center md:mt-16 lg:h-[80vh] font-poppins"
+      className="flex flex-nowrap flex-col-reverse justify-end mt-10 md:flex-row md:justify-between md:items-center md:mt-16 lg:h-[60vh] font-poppins"
     >
       <div
         id="left-landing"

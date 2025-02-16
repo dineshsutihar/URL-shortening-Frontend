@@ -37,7 +37,7 @@ export default function ShortenLink() {
   return (
     <div
       id="shorten"
-      className="relative bg-gray-900 border border-amber-400 rounded-xl mt-32 mx-4 md:mx-0"
+      className="relative bg-gray-900 border border-amber-400 rounded-xl md:mt-5 mx-4 md:mx-0"
     >
       <picture className="absolute inset-0 h-full rounded-xl">
         <source
