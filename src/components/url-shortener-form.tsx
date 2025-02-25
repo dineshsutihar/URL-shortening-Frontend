@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function UrlShortenerForm() {
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Add your URL shortening logic here
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="flex w-full gap-4">
@@ -28,6 +28,5 @@ export function UrlShortenerForm() {
         Shorten It!
       </Button>
     </form>
-  )
+  );
 }
-
