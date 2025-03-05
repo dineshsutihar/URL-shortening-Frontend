@@ -22,7 +22,7 @@ export default function Statistics() {
           <div className="bg-[hsl(257,27%,26%)] rounded-full w-16 h-16 m-auto content-center absolute -top-8 left-1/2 -translate-x-1/2 md:left-14">
             <img
               className="mx-auto w-8 h-8"
-              src="./public/images/icon-brand-recognition.svg"
+              src="/images/icon-brand-recognition.svg"
               alt="recognition"
             />
           </div>
@@ -36,7 +36,7 @@ export default function Statistics() {
           <div className="bg-[hsl(257,27%,26%)] rounded-full w-16 h-16 m-auto content-center absolute -top-8 left-1/2 -translate-x-1/2 md:left-14">
             <img
               className="mx-auto w-8 h-8"
-              src="./public/images/icon-detailed-records.svg"
+              src="/images/icon-detailed-records.svg"
               alt="Records"
             />
           </div>
@@ -50,7 +50,7 @@ export default function Statistics() {
           <div className="bg-[hsl(257,27%,26%)] rounded-full w-16 h-16 m-auto content-center absolute -top-8 left-1/2 -translate-x-1/2 md:left-14">
             <img
               className="mx-auto w-8 h-8"
-              src="./public/images/icon-fully-customizable.svg"
+              src="/images/icon-fully-customizable.svg"
               alt="Customizable"
             />
           </div>

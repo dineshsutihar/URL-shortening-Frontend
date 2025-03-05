@@ -11,7 +11,7 @@ export default function Nav() {
     <header className="mt-5">
       <nav id="lg-nav" className="hidden md:flex justify-between">
         <div className="flex gap-10 flex-nowrap items-center">
-          <img src="./public/images/logo.svg " alt="Shortly" />
+          <img src="/images/logo.svg " alt="Shortly" />
           <ul className="flex gap-5 font-semibold cursor-pointer ">
             <li className="hover:text-dcyanPrimary">Features</li>
             <li className="hover:text-dcyanPrimary">Pricing</li>
@@ -33,7 +33,7 @@ export default function Nav() {
       </nav>
       {/* Mobile Devices */}
       <nav className="md:hidden flex justify-between relative">
-        <img src="./public/images/logo.svg " alt="Shortly" className="w-2/6" />
+        <img src="/images/logo.svg " alt="Shortly" className="w-2/6" />
         <button id="menu" className="text-3xl">
           <LuMenu onClick={handleMenu} />
         </button>
