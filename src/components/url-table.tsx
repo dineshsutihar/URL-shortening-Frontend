@@ -109,8 +109,7 @@ const columns: ColumnDef<UrlData>[] = [
   },
   {
     id: "actions",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
