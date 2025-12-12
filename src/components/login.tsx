@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -13,9 +14,27 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { loginUser } from "@/lib/server-calls";
+import { useAuth } from "@/lib/auth-context";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    const token = await loginUser(email, password);
+    setLoading(false);
+    if (token) {
+      setToken(token);
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="container flex h-screen w-full flex-col items-center justify-center font-poppins">
@@ -29,7 +48,7 @@ export default function LoginForm() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-ddarkBlueNeutral">
                 Email
@@ -39,6 +58,8 @@ export default function LoginForm() {
                 placeholder="m@example.com"
                 required
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border-dgrayNeutral focus:border-dcyanPrimary"
               />
             </div>
@@ -51,6 +72,8 @@ export default function LoginForm() {
                   id="password"
                   required
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="border-dgrayNeutral focus:border-dcyanPrimary"
                 />
                 <Button
@@ -73,18 +96,11 @@ export default function LoginForm() {
             <Button
               className="w-full bg-dcyanPrimary font-semibold text-white hover:bg-opacity-70"
               type="submit"
+              disabled={loading}
             >
-              Sign In
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
-          <div className="mt-4 text-center text-sm">
-            <a
-              className="text-dcyanPrimary hover:underline"
-              href="/auth/forgot-password"
-            >
-              Forgot your password?
-            </a>
-          </div>
           <div className="mt-4 text-center text-sm text-dvioletGrayNeutral">
             Don&apos;t have an account?{" "}
             <a
@@ -99,3 +115,4 @@ export default function LoginForm() {
     </div>
   );
 }
+
