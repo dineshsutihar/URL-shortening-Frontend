@@ -5,12 +5,12 @@ import {
   BarChart3,
   Settings,
   Link2,
-  Users,
   History,
   Home,
   Bell,
   Search,
   MenuIcon,
+  LogOut,
 } from "lucide-react";
 import {
   Sidebar,
@@ -24,11 +24,25 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/lib/auth-context";
+import { useNavigate } from "react-router-dom";
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  const initials = user?.name
+    ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "?";
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -48,7 +62,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/links" className="flex items-center">
+                  <a href="/dashboard" className="flex items-center">
                     <Link2 className="mr-2 h-4 w-4" />
                     My Links
                   </a>
@@ -56,7 +70,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/analytics" className="flex items-center">
+                  <a href="/dashboard" className="flex items-center">
                     <BarChart3 className="mr-2 h-4 w-4" />
                     Analytics
                   </a>
@@ -64,7 +78,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/history" className="flex items-center">
+                  <a href="/dashboard" className="flex items-center">
                     <History className="mr-2 h-4 w-4" />
                     History
                   </a>
@@ -72,15 +86,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/team" className="flex items-center">
-                    <Users className="mr-2 h-4 w-4" />
-                    Team
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/settings" className="flex items-center">
+                  <a href="/dashboard" className="flex items-center">
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </a>
@@ -89,17 +95,19 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter className="border-t p-4">
-            <div className="flex items-center gap-4">
-              <Avatar>
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">John Doe</span>
-                <span className="text-xs text-muted-foreground">
-                  john@example.com
-                </span>
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarFallback>{initials}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium">{user?.name || "User"}</span>
+                  <span className="text-xs text-muted-foreground">{user?.email || ""}</span>
+                </div>
               </div>
+              <Button variant="ghost" size="icon" onClick={handleLogout} title="Logout">
+                <LogOut className="h-4 w-4" />
+              </Button>
             </div>
           </SidebarFooter>
         </Sidebar>
