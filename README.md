@@ -1,6 +1,5 @@
 # Shortly URL shortening API Challenge solution
 
-
 ## Table of contents
 
 - [Overview](#overview)
@@ -33,7 +32,6 @@ Users should be able to:
 ![desktop](./public/design/desktop-preview.jpg)
 ![mobile](./public/design/mobile-design.jpg)
 
-
 ### Links
 
 - Solution URL: [Solution URL](https://dineshsutihar.me)
@@ -52,10 +50,7 @@ Users should be able to:
 - [Next.js](https://nextjs.org/) - React framework
 - [Styled Components](https://styled-components.com/) - For styles
 
-
 ### What I learned
-
-
 
 ### Useful resources
 
@@ -67,3 +62,5 @@ Users should be able to:
 - Website - [Dinesh Sutihar](https://dineshsutihar.me)
 - Frontend Mentor - [@dineshsutihar](https://www.frontendmentor.io/profile/dineshsutihar)
 - Twitter - [@DineshSutihar](https://www.twitter.com/DineshSutihar)
+
+// Add Global Store for handling multiple dashboard on dashboard route..
