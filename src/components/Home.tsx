@@ -1,33 +1,51 @@
 export default function Home() {
   return (
-    <div
-      id="landing"
-      className="flex flex-nowrap flex-col-reverse justify-end mt-10 md:flex-row md:justify-between md:items-center md:mt-16 lg:h-[60vh] font-poppins"
-    >
-      <div
-        id="left-landing"
-        className="mt-14 text-center md:text-left md:flex-1 md:pr-8"
-      >
-        <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl">
-          More than just shorter links
-        </h1>
-        <p className="mt-5 text-lg text-gray-500 sm:text-xl md:text-2xl md:max-w-[90%]">
-          Build your brand's recognition and get detailed insights on how your
-          links are performing.
-        </p>
-        <a href="#shorten">
-          <button className="rounded-full px-10 py-3 mt-8 mb-20 text-lg font-semibold text-white transition-colors duration-300 bg-[hsl(180,66%,49%)] hover:bg-[hsl(180,66%,60%)] md:mt-10">
-            Get Started
-          </button>
-        </a>
+    <section className="pt-16 pb-10 md:pt-24 md:pb-16">
+      <div className="flex flex-col-reverse gap-10 md:flex-row md:items-center md:gap-16">
+        {/* Text */}
+        <div className="flex-1 text-center md:text-left">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[hsl(180,66%,49%)] mb-4">
+            URL Shortener & Link Manager
+          </p>
+          <h1 className="text-5xl font-black leading-[1.1] tracking-tight text-gray-900 md:text-6xl lg:text-7xl">
+            More than just
+            <br />
+            <span className="text-[hsl(180,66%,49%)]">shorter</span> links
+          </h1>
+          <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-md mx-auto md:mx-0">
+            Build your brand's recognition and get detailed insights on how your
+            links are performing across the web.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-4 justify-center md:justify-start">
+            <a
+              href="#shorten"
+              className="rounded-lg bg-[hsl(180,66%,49%)] px-6 py-3 text-sm font-semibold text-white hover:bg-[hsl(180,66%,42%)] transition-colors"
+            >
+              Get Started — It's Free
+            </a>
+            <a
+              href="/auth/login"
+              className="rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-gray-400 transition-colors"
+            >
+              Sign in
+            </a>
+          </div>
+          <p className="mt-5 text-xs text-gray-400">
+            No credit card required &nbsp;·&nbsp; Free forever plan
+          </p>
+        </div>
+
+        {/* Illustration */}
+        <div className="flex-1 flex justify-center md:justify-end">
+          <img
+            src="/images/illustration-working.svg"
+            alt="Working"
+            className="w-full max-w-sm md:max-w-none md:w-[110%]"
+          />
+        </div>
       </div>
-      <div id="right-landing" className="md:flex-1 lg:flex-none lg:w-1/2">
-        <img
-          src="/images/illustration-working.svg"
-          alt="Working Illustration"
-          className="w-full object-cover md:max-w-none md:w-[120%] lg:w-full"
-        />
-      </div>
-    </div>
+    </section>
   );
 }
+
+

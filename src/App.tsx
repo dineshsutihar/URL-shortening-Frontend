@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
@@ -8,18 +9,23 @@ import Statistics from "./components/Statistics";
 function App() {
   return (
     <>
-      <div className="max-w-screen-2xl mx-auto">
-        <main className="p-5 md:mx-14 font-">
+      <Toaster richColors closeButton />
+      <div className="w-full">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Nav />
           <Home />
-          <ShortenLink />
+        </div>
+        <ShortenLink />
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Statistics />
-        </main>
+        </div>
+        <PreFooter />
+        <Footer />
       </div>
-      <PreFooter />
-      <Footer />
     </>
   );
 }
 
 export default App;
+
+

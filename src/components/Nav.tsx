@@ -1,105 +1,94 @@
 import { useState } from "react";
-import { LuMenu } from "react-icons/lu";
+import { LuMenu, LuX } from "react-icons/lu";
 import { useAuth } from "@/lib/auth-context";
 
 export default function Nav() {
   const [menu, setMenu] = useState(false);
   const { isAuthenticated, logout } = useAuth();
 
-  const handleMenu = () => {
-    setMenu(!menu);
-  };
-
   return (
-    <header className="mt-5">
-      <nav id="lg-nav" className="hidden md:flex justify-between">
-        <div className="flex gap-10 flex-nowrap items-center">
-          <a href="/"><img src="/images/logo.svg " alt="Shortly" /></a>
-          <ul className="flex gap-5 font-semibold cursor-pointer ">
-            <li className="hover:text-dcyanPrimary">Features</li>
-            <li className="hover:text-dcyanPrimary">Pricing</li>
-            <li className="hover:text-dcyanPrimary">Resources</li>
+    <header className="relative z-50">
+      {/* Desktop */}
+      <nav className="hidden md:flex items-center justify-between py-5">
+        <div className="flex items-center gap-10">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/images/logo.svg" alt="Shortly" className="h-5" />
+          </a>
+          <ul className="flex items-center gap-8 text-sm text-gray-600">
+            <li>
+              <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
+            </li>
+            <li>
+              <a href="#how-it-works" className="hover:text-gray-900 transition-colors">How it works</a>
+            </li>
           </ul>
         </div>
-        <div className="flex font-semibold items-center gap-5">
+
+        <div className="flex items-center gap-2">
           {isAuthenticated ? (
             <>
-              <a href="/dashboard" id="dashboard" className="hover:text-dcyanPrimary">
+              <a href="/dashboard" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
                 Dashboard
               </a>
               <button
                 onClick={logout}
-                className="rounded-3xl px-5 py-2 text-white bg-[hsl(180,66%,49%)]"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
               >
                 Log out
               </button>
             </>
           ) : (
             <>
-              <a href="/auth/login" id="login">
+              <a href="/auth/login" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
                 Log in
               </a>
               <a
                 href="/auth/register"
-                id="signup"
-                className="rounded-3xl px-5 py-2 text-white bg-[hsl(180,66%,49%)]"
+                className="rounded-full bg-[hsl(257,27%,26%)] px-5 py-2 text-sm font-semibold text-white hover:bg-[hsl(257,27%,20%)] transition-colors"
               >
-                Sign up
+                Sign Up
               </a>
             </>
           )}
         </div>
       </nav>
-      {/* Mobile Devices */}
-      <nav className="md:hidden flex justify-between relative">
-        <a href="/"><img src="/images/logo.svg " alt="Shortly" className="w-2/6" /></a>
-        <button id="menu" className="text-3xl">
-          <LuMenu onClick={handleMenu} />
+
+      {/* Mobile */}
+      <nav className="md:hidden flex items-center justify-between py-5">
+        <a href="/">
+          <img src="/images/logo.svg" alt="Shortly" className="h-5" />
+        </a>
+        <button
+          className="p-1 text-gray-600"
+          onClick={() => setMenu(!menu)}
+          aria-label="Toggle menu"
+        >
+          {menu ? <LuX className="h-5 w-5" /> : <LuMenu className="h-5 w-5" />}
         </button>
-        {menu && (
-          <div className="absolute backdrop-blur-md top-16 border w-full text-center p-10 text-2xl text-black rounded-xl font-extrabold leading-normal z-50">
-            <ul className="font-semibold">
-              <li className="hover:bg-[hsl(180,66%,49%)] p-2 my-1 rounded-3xl">
-                Features
-              </li>
-              <li className="hover:bg-[hsl(180,66%,49%)] p-2 my-1 rounded-3xl">
-                Pricing
-              </li>
-              <li className="hover:bg-[hsl(180,66%,49%)]  p-2 my-1 mb-5 rounded-3xl">
-                Resources
-              </li>
-            </ul>
-            <hr />
-            <div className="flex flex-col font-semibold items-center gap-3 mt-4">
-              {isAuthenticated ? (
-                <>
-                  <a href="/dashboard" className="px-4 py-2">Dashboard</a>
-                  <button
-                    onClick={logout}
-                    className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)] text-center"
-                  >
-                    Log out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <a href="/auth/login" id="login" className="px-4 py-2">
-                    Log in
-                  </a>
-                  <a
-                    href="/auth/register"
-                    id="signup"
-                    className="rounded-3xl w-full px-5 py-2 text-white bg-[hsl(180,66%,49%)] text-center"
-                  >
-                    Sign up
-                  </a>
-                </>
-              )}
-            </div>
-          </div>
-        )}
       </nav>
+
+      {/* Mobile dropdown */}
+      {menu && (
+        <div className="md:hidden absolute inset-x-0 top-full bg-[hsl(257,27%,26%)] rounded-xl text-white text-center p-8 z-50 mx-[-1.5rem]">
+          <ul className="space-y-4 text-base font-semibold border-b border-white/20 pb-6 mb-6">
+            <li><a href="#features" onClick={() => setMenu(false)} className="block py-1 hover:text-[hsl(180,66%,49%)] transition-colors">Features</a></li>
+            <li><a href="#how-it-works" onClick={() => setMenu(false)} className="block py-1 hover:text-[hsl(180,66%,49%)] transition-colors">How it works</a></li>
+          </ul>
+          <div className="space-y-3">
+            {isAuthenticated ? (
+              <>
+                <a href="/dashboard" className="block py-2 font-semibold hover:text-[hsl(180,66%,49%)] transition-colors">Dashboard</a>
+                <button onClick={() => { logout(); setMenu(false); }} className="w-full rounded-full bg-[hsl(180,66%,49%)] py-3 font-semibold text-white">Log out</button>
+              </>
+            ) : (
+              <>
+                <a href="/auth/login" className="block py-2 font-semibold hover:text-[hsl(180,66%,49%)] transition-colors">Log in</a>
+                <a href="/auth/register" className="block rounded-full bg-[hsl(180,66%,49%)] py-3 font-semibold text-white">Sign Up</a>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
-

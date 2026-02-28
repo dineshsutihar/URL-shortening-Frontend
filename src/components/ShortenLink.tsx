@@ -1,99 +1,125 @@
 import { toast } from "sonner";
 import { useState } from "react";
+import { Copy, Check, ArrowRight, Loader2, ExternalLink } from "lucide-react";
 import shortenLink from "@/lib/server-calls";
+import { isLoggedIn } from "@/lib/server-calls";
 
 export default function ShortenLink() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const shorten = async () => {
+  const [shortCode, setShortCode] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const apiBase = import.meta.env.VITE_BACKEND_URL || "http://localhost:3030";
+
+  const handleShorten = async () => {
+    if (!url.trim()) {
+      toast.error("Please enter a URL", { position: "top-right" });
+      return;
+    }
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      toast.error("URL must start with http:// or https://", { position: "top-right" });
+      return;
+    }
     setLoading(true);
-    if (!url) {
-      toast.error("Please enter a URL to shorten", {
-        position: "top-right",
-      });
-      setLoading(false);
-      return;
-    }
-    if (!url.startsWith("http")) {
-      toast.error("Please enter a valid URL", {
-        position: "top-right",
-      });
-      setLoading(false);
-      return;
-    }
-    shortenLink(url);
+    setShortCode(null);
+    const code = await shortenLink(url);
+    setShortCode(code);
     setLoading(false);
   };
 
+  const handleCopy = () => {
+    if (!shortCode) return;
+    navigator.clipboard.writeText(`${apiBase}/${shortCode}`);
+    setCopied(true);
+    toast.success("Copied to clipboard!", { position: "top-right" });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div
+    <section
       id="shorten"
-      className="relative bg-gray-900 border border-amber-400 rounded-xl md:mt-5 mx-4 md:mx-0"
+      className="scroll-mt-20 bg-[hsl(257,27%,26%)] py-16"
     >
-      <picture className="absolute inset-0 h-full rounded-xl">
-        <source
-          media="(min-width: 768px)"
-          srcSet="/images/bg-shorten-desktop.svg"
-        />
-        <img
-          className="w-full h-full object-cover rounded-xl"
-          src="/images/bg-shorten-mobile.svg"
-          alt="URL shortener background"
-        />
-      </picture>
-      <div className="relative z-10 p-6 md:p-10 flex flex-col md:flex-row justify-center items-center gap-4">
-        <input
-          type="text"
-          name="longlink"
-          placeholder="Shorten a link here..."
-          className="w-full px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
-        <button
-          className="w-full md:w-40 px-5 py-3 text-xl font-semibold text-white 
-                 bg-[hsl(180,66%,49%)] rounded whitespace-nowrap 
-                 hover:bg-opacity-80 transition-colors duration-300"
-          onClick={() => shorten()}
-          disabled={loading}
-        >
-          {loading ? (
-            <div className="flex items-center space-x-2">
-              <span>Please wait</span>
-              <span>
-                <svg
-                  className="animate-spin"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <h2 className="text-2xl font-black text-white mb-8 md:text-3xl">
+          Shorten a link
+        </h2>
+
+        {/* Input row */}
+        <div className="flex flex-col gap-3 md:flex-row">
+          <input
+            type="url"
+            placeholder="https://your-very-long-url.com/goes/here"
+            className="flex-1 rounded-lg border border-white/10 bg-white/10 px-5 py-3.5 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[hsl(180,66%,49%)] transition-all"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleShorten()}
+          />
+          <button
+            onClick={handleShorten}
+            disabled={loading}
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(180,66%,49%)] px-7 py-3.5 font-semibold text-white transition-colors hover:bg-[hsl(180,66%,42%)] disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Shortening…
+              </>
+            ) : (
+              <>
+                Shorten It
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Result */}
+        {shortCode && (
+          <div className="mt-4">
+            <div className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/10 px-5 py-3.5">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="h-2 w-2 shrink-0 rounded-full bg-[hsl(180,66%,49%)] animate-pulse" />
+                <a
+                  href={`${apiBase}/${shortCode}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-sm text-[hsl(180,66%,70%)] truncate hover:text-[hsl(180,66%,85%)] transition-colors flex items-center gap-1.5"
                 >
-                  <circle
-                    opacity="0.5"
-                    cx="10"
-                    cy="10"
-                    r="9"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                  <mask id="path-2-inside-1_2527_20936" fill="white">
-                    <path d="M18.4713 13.0345C18.9921 13.221 19.5707 12.9508 19.7043 12.414C20.0052 11.2042 20.078 9.94582 19.9156 8.70384C19.7099 7.12996 19.1325 5.62766 18.2311 4.32117C17.3297 3.01467 16.1303 1.94151 14.7319 1.19042C13.6285 0.597723 12.4262 0.219019 11.1884 0.0708647C10.6392 0.00512742 10.1811 0.450137 10.1706 1.00319C10.1601 1.55625 10.6018 2.00666 11.1492 2.08616C12.0689 2.21971 12.9609 2.51295 13.7841 2.95511C14.9023 3.55575 15.8615 4.41394 16.5823 5.45872C17.3031 6.50351 17.7649 7.70487 17.9294 8.96348C18.0505 9.89002 18.008 10.828 17.8063 11.7352C17.6863 12.2751 17.9506 12.848 18.4713 13.0345Z" />
-                  </mask>
-                  <path
-                    d="M18.4713 13.0345C18.9921 13.221 19.5707 12.9508 19.7043 12.414C20.0052 11.2042 20.078 9.94582 19.9156 8.70384C19.7099 7.12996 19.1325 5.62766 18.2311 4.32117C17.3297 3.01467 16.1303 1.94151 14.7319 1.19042C13.6285 0.597723 12.4262 0.219019 11.1884 0.0708647C10.6392 0.00512742 10.1811 0.450137 10.1706 1.00319C10.1601 1.55625 10.6018 2.00666 11.1492 2.08616C12.0689 2.21971 12.9609 2.51295 13.7841 2.95511C14.9023 3.55575 15.8615 4.41394 16.5823 5.45872C17.3031 6.50351 17.7649 7.70487 17.9294 8.96348C18.0505 9.89002 18.008 10.828 17.8063 11.7352C17.6863 12.2751 17.9506 12.848 18.4713 13.0345Z"
-                    stroke="white"
-                    strokeWidth="4"
-                    mask="url(#path-2-inside-1_2527_20936)"
-                  />
-                </svg>
-              </span>
+                  {apiBase}/{shortCode}
+                  <ExternalLink className="h-3 w-3 shrink-0" />
+                </a>
+              </div>
+              <button
+                onClick={handleCopy}
+                className="shrink-0 inline-flex items-center gap-1.5 rounded-md bg-[hsl(180,66%,49%)] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[hsl(180,66%,42%)]"
+              >
+                {copied ? (
+                  <>
+                    <Check className="h-3.5 w-3.5" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3.5 w-3.5" />
+                    Copy
+                  </>
+                )}
+              </button>
             </div>
-          ) : (
-            "Shorten It!"
-          )}
-        </button>
+            {!isLoggedIn() && (
+              <p className="mt-3 text-sm text-gray-400">
+                <a href="/auth/register" className="text-[hsl(180,66%,49%)] hover:underline font-medium">
+                  Create a free account
+                </a>{" "}
+                to save this link and track clicks.
+              </p>
+            )}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }
+
